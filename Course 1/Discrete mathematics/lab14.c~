@@ -1,0 +1,17 @@
+#include "main.h"
+
+void FordFalcerson(int* arr, int* w, int n) {
+  int i, c, s, t;
+  int* plusarr;
+  int* minusarr;
+  plusarr = arrpow(arr, n, false, 1);
+  minusarr = arrpow(arr, n, false, 2);
+  for(i=0;i<n;i++) {
+    if(plusarr[i] == 0)
+      s = i;
+    if(minusarr[i] == 0)
+      t = i;
+  }
+  //printf("%d %d", s, t);
+  
+}

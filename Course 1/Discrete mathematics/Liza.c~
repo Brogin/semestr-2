@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main(int argc, char* argv[])
+{
+  FILE* pfile;
+  int* incarr;
+  int* adjarr;
+  pfile = fopen(argv[1],"r");
+  int n, m, x, y, i=0, c;
+  while((fscanf(pfile,"%d %d",&x,&y)) != EOF) {
+    if(i == 0){
+      n = x;
+      m = y;
+      incarr = (int*) malloc (sizeof(int)*n*m);
+      adjarr = (int*) malloc (sizeof(int)*n*n);
+      for(c=0;c<n*m;c++)
+	incarr[c] = 0;
+      for(c=0;c<n*n;c++)
+	adjarr[c] = 0;
+    } else {
+      incarr[(x-1)*m+(i-1)] = -1;
+      incarr[(y-1)*m+(i-1)] = 1;
+      adjarr[(x-1)*n+(y-1)] = 1;
+    }
+    i++;
+  }
+  i = 0;
+  while(i < n*m) {
+    printf("%2d%s",incarr[i],(i != 0 && i%m == 0)?"\n":" ");
+    i++;
+  }
+  i = 0;
+  while(i < n*n) {
+    printf("%2d%s",adjarr[i]m(i != 0 && i%n == 0)?"\n":" ");
+    i++;
+  }
+}

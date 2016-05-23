@@ -1,0 +1,46 @@
+#include "main.h"
+
+void Color(int* arr, int n) {
+  Queue Q = {0, 0, 0};
+  int c, i, t, r, g=0, f, color = 1;
+  int C[n];
+  int M[n];  
+  for(r=0;r<n;r++) {
+    //f = 1;
+    //f = f - 1;
+    f = r;
+  for(i=0;i<n;i++) {
+    C[i] = 0;
+    M[i] = 0;
+  }
+  while(1) {    
+    for(i=0;i<n;i++) {
+      if(arr[f*n+i]) {
+	if(!C[i] && f!=i) {
+	  Qpush(&Q, i);
+	}
+	M[i] = C[i];
+      }
+    }
+    g = 0;
+    for(c=1;c<=n;c++) {
+      for(t=0;t<n;t++) {
+	if(M[t] == c)
+	  g++;
+      }
+      if(!g) {
+	color = c;
+	break;
+      } else
+	g = 0;
+    }
+    C[f] = color;
+    if(Qempty(&Q))
+      break;
+    f = Qpop(&Q);
+    for(i=0;i<n;i++)
+      M[i] = 0;
+  }
+  printarr(C, 1, n);
+  }
+}
